@@ -2,13 +2,16 @@
 
 import React from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { Button, Card, Spin } from 'antd';
+import { useBookingsQuery } from '@/features/booking/services/booking.query';
+import BookingCard from '@/features/booking/_components/BookingCard';
+import { Button, Card, Spin, Empty } from 'antd';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
   const { user, isLoading, isAuthenticated, logout } = useAuth();
+  const { data: bookings, isLoading: bookingsLoading } = useBookingsQuery(user?.id);
   console.log("Logged in user", user)
 
   if (isLoading) {
@@ -114,6 +117,37 @@ export default function DashboardPage() {
                 <p className="text-2xl font-bold text-purple-600">Just now</p>
               </div>
             </div>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          <Card title="Your Appointments" className="mb-6">
+            {bookingsLoading ? (
+              <div className="flex items-center justify-center py-14">
+                <Spin size="large" />
+              </div>
+            ) : !bookings?.length ? (
+              <div className="py-14">
+                <Empty description="No appointments yet" />
+                <div className="mt-4 text-center">
+                  <Link href="/booking">
+                    <Button type="primary" className="rounded-full px-8 py-3">
+                      Book your first appointment
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className="grid gap-6">
+                {bookings.map((booking) => (
+                  <BookingCard key={`${booking._id ?? booking.email}-${booking.date}-${booking.serviceType}`} booking={booking} />
+                ))}
+              </div>
+            )}
           </Card>
         </motion.div>
       </div>

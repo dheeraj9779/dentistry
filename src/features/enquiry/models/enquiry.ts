@@ -6,17 +6,17 @@ export interface IEnquiry extends Document {
   phone: string;
   problemType: string;
   painlevel: string;
-  message: string;
+  message?: string;
   status: 'pending' | 'resolved';
 }
 
 const EnquirySchema = new Schema<IEnquiry>({
   fullName: { type: String, required: true },
-  email: { type: String, required: true, unique: true, lowercase: true, index: true },
+  email: { type: String, required: true, lowercase: true, index: true },
   phone: { type: String, required: true },
   problemType: { type: String, required: true },
   painlevel: { type: String, required: true },
-  message: { type: String, required: true },
+  message: { type: String },
   status: { type: String, enum: ['pending', 'resolved'], default: 'pending' },
 }, { timestamps: true });
 

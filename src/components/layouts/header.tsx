@@ -14,7 +14,7 @@ type NavLink = {
 };
 
 const links: NavLink[] = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "/" ,scrollToId: "home"},
   { name: "Services", href: "/#services", scrollToId: "services" },
   { name: "Specialists", href: "/#specialists", scrollToId: "specialists" },
   { name: "Enquiry", href: "/#enquiry", scrollToId: "enquiry" },

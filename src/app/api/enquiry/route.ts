@@ -1,4 +1,4 @@
-import { createEnquiry, getEnquiries } from "@/services/enquiry.service";
+import { createEnquiry, getEnquiries } from "@/features/enquiry/services/enquiry.service";
 import { NextResponse } from "next/server";
 
 export async function GET() {

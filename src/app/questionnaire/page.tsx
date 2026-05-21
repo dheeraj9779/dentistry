@@ -105,6 +105,7 @@ export default function QuestionnairePage() {
               <div className="flex flex-wrap justify-end gap-3">
                 {currentQuestionIndex > 0 && (
                   <Button
+                  size='large'
                     onClick={goPrevious}
                     className="rounded-full border border-slate-300 bg-white px-8 py-3 font-semibold text-slate-800 shadow-sm"
                   >
@@ -112,11 +113,11 @@ export default function QuestionnairePage() {
                   </Button>
                 )}
                 {currentQuestionIndex < questions.length - 1 ? (
-                  <Button type="primary"  color="cyan" onClick={goNext} className="rounded-full px-8 py-3 font-semibold">
+                  <Button type="primary" size='large'  onClick={goNext} className="btn_cls">
                     Continue
                   </Button>
                 ) : (
-                  <Button type="primary" onClick={handleSubmit} className="rounded-full px-8 py-3 font-semibold">
+                  <Button type="primary" size='large' onClick={handleSubmit} className="btn_cls">
                     Submit Answers
                   </Button>
                 )}

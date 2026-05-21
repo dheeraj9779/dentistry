@@ -1,4 +1,4 @@
-import * as userService from '@/services/user.service';
+import * as userService from '@/features/auth/services/user.service';
 
 export const findUserByEmail = userService.findUserByEmail;
 export const findUserById = userService.findUserById;

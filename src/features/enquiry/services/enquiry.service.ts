@@ -1,5 +1,5 @@
 import connectToDatabase from "@/lib/db";
-import Enquiry from "@/lib/models/enquiry";
+import Enquiry from "@/features/enquiry/models/enquiry";
 
 export type EnquiryPayload = {
   fullName: string;

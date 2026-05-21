@@ -178,6 +178,7 @@ const Hero = () => {
         hover:scale-105
         transition-all
       "
+      onClick={() => router.push("/booking")}
                 >
                   Book Appointment
                   <ArrowRightOutlined />

@@ -1,5 +1,5 @@
 import connectToDatabase from '@/lib/db';
-import User, { IUser } from '@/lib/models/user';
+import User, { IUser } from '@/features/auth/models/user';
 import bcrypt from 'bcryptjs';
 
 export async function findUserByEmail(email: string): Promise<IUser | null> {

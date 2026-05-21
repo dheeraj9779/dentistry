@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
-import { EnquiryPayload, EnquiryRecord } from "@/services/enquiry.service";
+import { EnquiryPayload, EnquiryRecord } from "@/features/enquiry/services/enquiry.service";
 
 export const enquiryKeys = {
   all: ["enquiries"] as const,

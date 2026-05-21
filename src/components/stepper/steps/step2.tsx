@@ -4,6 +4,7 @@ import { Form, Radio, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { motion } from "motion/react";
+import { AppstoreOutlined } from "@ant-design/icons";
 
 type Props = {
   control: Control<StepperFormData>;
@@ -56,6 +57,7 @@ export const StepTwo = ({control, errors}: Props) => {
               placeholder="Select a problem"
               size="large"
               className="input_cls"
+              prefix={<AppstoreOutlined className="text-cyan-500! mr-1"/>}
               options={[
                 { label: "Tooth Pain", value: "tooth_pain" },
                 { label: "Whitening", value: "whitening" },

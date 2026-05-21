@@ -8,7 +8,7 @@ import { StepOne } from "./steps/step1";
 import { StepTwo } from "./steps/step2";
 import { Button, App } from "antd";
 import { LettersPullUp } from "@/utils/letterpullupEffect";
-import { useSubmitEnquiryMutation } from "@/services/enquiry.query";
+import { useSubmitEnquiryMutation } from "@/features/enquiry/services/enquiry.query";
 import { motion } from "motion/react";
 
 const StepperForm = () => {
@@ -109,6 +109,7 @@ const StepperForm = () => {
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     onClick={prevStep}
+                    size="large"
                     className="px-8 py-2 h-auto rounded-lg border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-400 transition-all"
                   >
                     Previous
@@ -121,19 +122,22 @@ const StepperForm = () => {
                   <Button
                     onClick={nextStep}
                     className="h-auto btn_cls"
+                    size='large'
                   >
                     Next
                   </Button>
                 </motion.div>
               ) : (
-                <motion.button
+                <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="ml-auto btn_cls"
+                
                 >
-                  Submit
-                </motion.button>
+            
+                  <Button className="btn_cls w-full rounded-full" size='large' htmlType="submit">
+                                Submit
+                              </Button>
+                </motion.div>
               )}
             </div>
           </form>

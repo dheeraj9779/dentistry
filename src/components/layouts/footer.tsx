@@ -11,7 +11,17 @@ import {
   ArrowRightOutlined,
 } from "@ant-design/icons";
 
+import { useRouter } from "next/navigation";
+
 const Footer = () => {
+  const router = useRouter();
+  const handleNavClick = ( sectionId: string) => {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    };
   return (
     <footer className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white">
 
@@ -52,6 +62,7 @@ const Footer = () => {
                 shadow-xl hover:shadow-cyan-500/30
                 w-fit
               "
+              onClick={() => router.push("/booking")}
             >
               Book Appointment
 
@@ -143,20 +154,7 @@ const Footer = () => {
                 <Link
                   href="#"
                   className="hover:text-cyan-400 transition-colors"
-                >
-                  Home
-                </Link>
-
-                <Link
-                  href="#"
-                  className="hover:text-cyan-400 transition-colors"
-                >
-                  About Us
-                </Link>
-
-                <Link
-                  href="#"
-                  className="hover:text-cyan-400 transition-colors"
+                  onClick={() => handleNavClick('services')}
                 >
                   Services
                 </Link>
@@ -164,6 +162,7 @@ const Footer = () => {
                 <Link
                   href="#"
                   className="hover:text-cyan-400 transition-colors"
+                  onClick={() => handleNavClick('specialists')}
                 >
                   Specialists
                 </Link>
@@ -171,6 +170,7 @@ const Footer = () => {
                 <Link
                   href="#"
                   className="hover:text-cyan-400 transition-colors"
+                  onClick={() => handleNavClick('enquiry')}
                 >
                   Contact
                 </Link>
