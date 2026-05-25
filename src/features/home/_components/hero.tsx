@@ -205,7 +205,7 @@ const Hero = () => {
         transition-all
       "
 
-      onClick={() => router.push("/questionnaire")}
+      onClick={() => router.push("/ai_dental_analysis")}
                 >
                   {/* Glow */}
                   <div className="absolute inset-0 bg-cyan-400/0 group-hover:bg-cyan-400/5 transition-all duration-300" />

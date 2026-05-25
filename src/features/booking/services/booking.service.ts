@@ -34,9 +34,10 @@ export async function createBooking(data: BookingPayload): Promise<IBooking> {
   return created as IBooking;
 }
 
-export async function getBookings(userId?: string): Promise<IBooking[]> {
+export async function getBookings(email?: string): Promise<IBooking[]> {
   await connectToDatabase();
-  const query = userId ? { userId } : {};
+  const query = email ? { email: email } : {};
+  console.log('Fetching bookings with query:', query);
   return await Booking.find(query).sort({ createdAt: -1 }).lean();
 }
 

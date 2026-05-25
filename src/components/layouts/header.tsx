@@ -6,6 +6,8 @@ import { MouseEvent, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from 'motion/react';
 import { MenuOutlined } from "@ant-design/icons";
+import Image from "next/image";
+
 
 type NavLink = {
   name: string;
@@ -43,17 +45,19 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full px-4 md:px-8 py-4">
-      <nav className="max-w-7xl mx-auto flex justify-between items-center">
+    <header className="px-6 md:px-12 lg:px-20 py-4">
+      <nav className="mx-auto flex justify-between items-center">
         {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="flex-shrink-0"
         >
           <Link href="/" className="flex items-center gap-2">
-            <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg">
-              <span className="text-xl font-bold text-white">D</span>
+           {/* Logo */}
+            <div>
+              <Image src="/logo.webp" alt="Dentistry+" width={60} height={30} />
             </div>
+
             <span className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               Dentistry+
             </span>

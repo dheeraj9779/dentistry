@@ -12,29 +12,27 @@ import {
 } from "@ant-design/icons";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Footer = () => {
   const router = useRouter();
-  const handleNavClick = ( sectionId: string) => {
-      const target = document.getElementById(sectionId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-    };
+  const handleNavClick = (sectionId: string) => {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+  };
   return (
     <footer className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-black text-white">
-
       {/* Glow Effects */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/10 blur-3xl rounded-full" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 blur-3xl rounded-full" />
 
       <div className="relative z-10">
-
         {/* Top CTA */}
         <div className="border-b border-white/10 px-6 md:px-12 lg:px-20 py-16">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
-
             <div className="max-w-2xl">
               <p className="uppercase tracking-[0.3em] text-cyan-400 text-sm mb-4">
                 Dental care made simple
@@ -65,7 +63,6 @@ const Footer = () => {
               onClick={() => router.push("/booking")}
             >
               Book Appointment
-
               <ArrowRightOutlined className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -73,21 +70,23 @@ const Footer = () => {
 
         {/* Main Footer */}
         <div className="px-6 md:px-12 lg:px-20 py-20">
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
-
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-6">
-                
                 <div className="flex items-center gap-2">
-            <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg">
-              <span className="text-xl font-bold text-white">D</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-              Dentistry+
-            </span>
-          </div>
+                  <div>
+                    <Image
+                      src="/logo.webp"
+                      alt="Dentistry+"
+                      width={60}
+                      height={30}
+                    />
+                  </div>
+                  <span className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                    Dentistry+
+                  </span>
+                </div>
               </div>
 
               <p className="text-white/60 leading-relaxed">
@@ -97,7 +96,6 @@ const Footer = () => {
 
               {/* Socials */}
               <div className="flex items-center gap-4 mt-8">
-
                 <Link
                   href="#"
                   className="
@@ -139,22 +137,18 @@ const Footer = () => {
                 >
                   <LinkedinFilled />
                 </Link>
-
               </div>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-xl font-semibold mb-8">
-                Quick Links
-              </h4>
+              <h4 className="text-xl font-semibold mb-8">Quick Links</h4>
 
               <div className="flex flex-col gap-5 text-white/60">
-
                 <Link
                   href="#"
                   className="hover:text-cyan-400 transition-colors"
-                  onClick={() => handleNavClick('services')}
+                  onClick={() => handleNavClick("services")}
                 >
                   Services
                 </Link>
@@ -162,7 +156,7 @@ const Footer = () => {
                 <Link
                   href="#"
                   className="hover:text-cyan-400 transition-colors"
-                  onClick={() => handleNavClick('specialists')}
+                  onClick={() => handleNavClick("specialists")}
                 >
                   Specialists
                 </Link>
@@ -170,22 +164,18 @@ const Footer = () => {
                 <Link
                   href="#"
                   className="hover:text-cyan-400 transition-colors"
-                  onClick={() => handleNavClick('enquiry')}
+                  onClick={() => handleNavClick("enquiry")}
                 >
                   Contact
                 </Link>
-
               </div>
             </div>
 
             {/* Services */}
             <div>
-              <h4 className="text-xl font-semibold mb-8">
-                Our Services
-              </h4>
+              <h4 className="text-xl font-semibold mb-8">Our Services</h4>
 
               <div className="flex flex-col gap-5 text-white/60">
-
                 <p className="hover:text-cyan-400 transition-colors cursor-pointer">
                   Teeth Whitening
                 </p>
@@ -205,25 +195,19 @@ const Footer = () => {
                 <p className="hover:text-cyan-400 transition-colors cursor-pointer">
                   Cosmetic Dentistry
                 </p>
-
               </div>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-xl font-semibold mb-8">
-                Contact Us
-              </h4>
+              <h4 className="text-xl font-semibold mb-8">Contact Us</h4>
 
               <div className="flex flex-col gap-6">
-
                 <div className="flex items-start gap-4">
                   <PhoneOutlined className="text-cyan-400 text-lg mt-1" />
 
                   <div>
-                    <p className="text-white font-medium">
-                      +1 (234) 567-890
-                    </p>
+                    <p className="text-white font-medium">+1 (234) 567-890</p>
 
                     <p className="text-white/50 text-sm mt-1">
                       Mon - Sat / 9AM - 8PM
@@ -249,51 +233,34 @@ const Footer = () => {
                   <EnvironmentOutlined className="text-cyan-400 text-lg mt-1" />
 
                   <div>
-                    <p className="text-white font-medium">
-                      25 Dental Street,
-                    </p>
+                    <p className="text-white font-medium">25 Dental Street,</p>
 
-                    <p className="text-white/50 text-sm mt-1">
-                      New York, USA
-                    </p>
+                    <p className="text-white/50 text-sm mt-1">New York, USA</p>
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
 
         {/* Bottom */}
         <div className="border-t border-white/10 px-6 md:px-12 lg:px-20 py-6">
-
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-
             <p className="text-white/50 text-sm">
               © 2026 dentistry. All rights reserved.
             </p>
 
             <div className="flex items-center gap-6 text-sm text-white/50">
-
-              <Link
-                href="#"
-                className="hover:text-cyan-400 transition-colors"
-              >
+              <Link href="#" className="hover:text-cyan-400 transition-colors">
                 Privacy Policy
               </Link>
 
-              <Link
-                href="#"
-                className="hover:text-cyan-400 transition-colors"
-              >
+              <Link href="#" className="hover:text-cyan-400 transition-colors">
                 Terms of Service
               </Link>
-
             </div>
           </div>
         </div>
-
       </div>
     </footer>
   );

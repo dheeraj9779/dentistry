@@ -13,7 +13,11 @@ export default function BookingCard({ booking }: { booking: BookingRecord }) {
     <Card
       hoverable
       className="rounded-[1.75rem] border border-slate-200 shadow-[0_24px_60px_rgba(15,23,42,0.08)] dark:border-slate-800 dark:bg-slate-950"
-      bodyStyle={{ padding: '1.5rem' }}
+      styles={{
+                body: {
+                  padding: '1.5rem',
+                },
+              }} 
     >
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>

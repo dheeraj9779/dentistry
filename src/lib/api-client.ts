@@ -1,3 +1,5 @@
+
+
 type RequestOptions = {
   method?: string;
   headers?: Record<string, string>;
@@ -54,11 +56,13 @@ async function fetchApi<T>(url: string, options: RequestOptions = {}): Promise<T
   const contentType = response.headers.get('content-type') ?? '';
   const isJson = contentType.includes('application/json');
   const data = isJson && responseText ? JSON.parse(responseText) : (responseText as unknown);
+  console.log("api resssssss", data)
 
   if (!response.ok) {
-    const errorMessage = typeof data === 'object' && data !== null && 'error' in data
-      ? (data as { error?: string }).error
+    const errorMessage = typeof data === 'object' && data !== null && 'message' in data
+      ? (data as { message?: string }).message
       : response.statusText;
+      console.log("Error Message:::", errorMessage)
     throw new Error(errorMessage || 'API request failed');
   }
 

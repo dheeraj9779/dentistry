@@ -123,6 +123,7 @@ const StepperForm = () => {
                     onClick={nextStep}
                     className="h-auto btn_cls"
                     size='large'
+                    type="default"
                   >
                     Next
                   </Button>

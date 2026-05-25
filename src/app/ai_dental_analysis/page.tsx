@@ -1,16 +1,26 @@
 "use client";
+import AIResultCard from "@/components/AIResultCard";
+import DentalLoader from "@/components/Loaders/dentalLoader";
 import QuestionCard from "@/components/QuestionCard";
+import { useAssistanceQuery } from "@/features/ai-assistance/services/assistance.query";
 import { questions } from "@/mock_data/data";
 import { Button, Card, App } from "antd";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 
-
+export type AIResult = {
+  riskLevel: string;
+  possibleIssue: string;
+  recommendations: string[];
+  explanation: string;
+};
 
 export default function QuestionnairePage() {
   const { message } = App.useApp();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [result, setResult] = useState<AIResult | null>(null);
+  const { mutate, isPending } = useAssistanceQuery();
 
   const currentQuestion = questions[currentQuestionIndex];
   const selectedAnswer = answers[currentQuestion.id] || "";
@@ -41,10 +51,27 @@ export default function QuestionnairePage() {
       message.warning("Please choose an answer before submitting.");
       return;
     }
-    message.success("Your questionnaire was submitted successfully.");
-    
+    mutate({ answer: answers }, {
+      onSuccess: (response) => {
+        console.log("AI Assistance Response:", response);
+        setResult(response);
+        message.success("Your questionnaire was submitted successfully.");
+      },
+      onError: (error) => {
+        console.error("Error submitting questionnaire:", error);
+        message.error(error?.message ||"Failed to submit your questionnaire. Please try again.");
+      },
+    });
     console.log("questionnaire answers", answers);
   };
+
+  if (isPending){  
+  return <DentalLoader />
+}
+
+if (result) {
+  return <AIResultCard data={result} />;
+}
 
   return (
     <div className="min-h-screen  bg-gradient-to-r from-slate-950 via-slate-800/85 to-slate-700/40 py-16">
@@ -88,7 +115,12 @@ export default function QuestionnairePage() {
               </div>
             </div>
 
-            <Card className="rounded-[1.75rem] border border-slate-200 bg-white! shadow-[0_20px_80px_rgba(15,23,42,0.08)]" bodyStyle={{ padding: 0 }}>
+            <Card className="rounded-[1.75rem] border border-slate-200 bg-white! shadow-[0_20px_80px_rgba(15,23,42,0.08)]" 
+              styles={{
+                body: {
+                  padding: 0,
+                },
+              }} >
               <div className="rounded-[1.75rem] bg-white p-6 md:p-8">
                 <QuestionCard
                   question={currentQuestion}
@@ -117,8 +149,8 @@ export default function QuestionnairePage() {
                     Continue
                   </Button>
                 ) : (
-                  <Button type="primary" size='large' onClick={handleSubmit} className="btn_cls">
-                    Submit Answers
+                  <Button type="primary" size='large' onClick={handleSubmit} className="btn_cls" disabled={isPending} loading={isPending}>
+                    {isPending ? "Submitting..." : "Submit Answers"}
                   </Button>
                 )}
               </div>

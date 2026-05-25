@@ -5,9 +5,11 @@ import { Button, Card, Empty, Spin } from 'antd';
 import Link from 'next/link';
 import { useBookingsQuery } from '@/features/booking/services/booking.query';
 import BookingCard from '@/features/booking/_components/BookingCard';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function BookingsPage() {
-  const { data: bookings, isLoading, isError } = useBookingsQuery();
+    const { user } = useAuth();
+  const { data: bookings, isLoading, isError } = useBookingsQuery(user?.email || '');
 
   const total = bookings?.length ?? 0;
   const confirmed = bookings?.filter((item) => item.status === 'confirmed').length ?? 0;
